@@ -25,7 +25,7 @@ The problem with this modularity is that the API docs get scattered across diffe
 
 ## solution
 
-One of the most active sbt plugin developer is Eugene Yokota, I recommend checking out his projects, there is plenty of useful things to discover. So I just found out about the [sbt-unidoc](https://github.com/sbt/sbt-unidoc) plugin which promises to solve the problem of scattered API docs. The readme shows how this works with a multi project sbt setup. Fortunately, it is possible to adapt this to the situation where the sources are spread across multiple repositories. Sbt has a cool feature called (external) project references, Alvin Alexander has a [brief blog post about this](http://alvinalexander.com/scala/using-github-projects-scala-library-dependencies-sbt-sbteclipse).
+One of the most active sbt plugin developers is Eugene Yokota, I recommend checking out his projects, there is plenty of useful things to discover. So I just found out about the [sbt-unidoc](https://github.com/sbt/sbt-unidoc) plugin which promises to solve the problem of scattered API docs. The readme shows how this works with a multi project sbt setup. Fortunately, it is possible to adapt this to the situation where the sources are spread across multiple repositories. Sbt has a cool feature called (external) project references, Alvin Alexander has a [brief blog post about this](http://alvinalexander.com/scala/using-github-projects-scala-library-dependencies-sbt-sbteclipse).
 
 You define a new multi project build file that declares all the libraries whose API docs you want to combine as external projects, then you run `sbt unidoc` on the root aggregate. With a few extra steps these docs can then be published to the main project's [GitHub pages](http://pages.github.com/).
 
