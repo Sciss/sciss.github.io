@@ -11,7 +11,7 @@ Having had to return my previous laptop to the University of Plymouth after fini
 
 ## Configuring the System
 
-I went for _Debian_, because this is the distribution most of colleagues use, so if I run into trouble I could ask them. I would recommend having someone around that can help especially in the first few weeks, because even if you are tech savvy (like I consider myself I am) you will face quite a few problems in the beginning. Some of them because the system is in beta (I went for Debian 8 aka _Jessie_ which although now in "freeze" was still a moving target in March 2014), some of them simply because you wouldn't know where the switches are.
+I went for _Debian_, because this is the distribution most of my colleagues use, so if I run into trouble I could ask them. I would recommend having someone around that can help especially in the first few weeks, because even if you are tech savvy (like I consider myself I am) you will face quite a few problems in the beginning. Some of them because the system is in beta (I went for Debian 8 aka _Jessie_ which although now in "freeze" was still a moving target in March 2014), some of them simply because you wouldn't know where the switches are.
 
 I also decided for _Gnome 3_, something that hardcore Linux geeks probably dislike, because it's an end-user friendly desktop environment, actually quite pretty and not too dissimilar from OS X. In fact, it took me only two or three weeks to feel entirely comfortable in Gnome, and now when I have to go back to an OS X machine, I find that system limiting and I struggle to remember the shortcuts.
 
