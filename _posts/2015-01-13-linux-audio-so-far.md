@@ -63,6 +63,10 @@ All 18 inputs and 20 outputs appear directly in Jack. I haven't tested the ADAT 
 
 So far I noticed rather regular XRUNs when the Wifi is enabled, but this seems to be a common problem. While the Wifi is off, I haven't had any issues with XRUNs yet. Also note that I'm too lazy to fight with low-latency or realtime kernels, so right now I'm running the off-the-shelf Debian Jessie (kernel 3.16). Things can probably get better if you invest more energy.
 
+![Scarlett Setup Photo](/images/scarlett_5825.jpg)
+
+![Scarlett Setup Photo](/images/scarlett_5826.jpg)
+
 ### Conclusion and Next Steps
 
 So at day 1, the experience with the Focusrite Scarlett 18i20 has been smooth. From the overall impression of the box, I must say it looks quite pretty with the red metal. For travelling, the box is rather large (19" wide and around 25 cm deep) and heavy, especially compared to a Fireface 400 or Fireface UC. The knobs make a quite cheap impression, especially the monitor and headphones knobs, while the input gain knobs feel a bit more robust. The same goes for the phantom power, mute and dim switches, I guess this is where they tried to save the money. On the display, I am especially missing an LED to indicate the ADAT input status, I would guess it can get tricky if you are in a situation where the ADAT input signal is not showing up in the software and you don't know whether the box sees it at all.
