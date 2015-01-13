@@ -2,7 +2,7 @@
 layout: post
 title: "consolidating scattered scala api docs"
 description: ""
-category: ""
+# category: ""
 tags: [scala]
 ---
 {% include JB/setup %}
