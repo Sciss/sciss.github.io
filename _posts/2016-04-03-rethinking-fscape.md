@@ -6,6 +6,7 @@ description: ""
 tags: [scala]
 ---
 {% include JB/setup %}
+{% include themes/twitter/default.html %}
 
 ## Preamble
 
