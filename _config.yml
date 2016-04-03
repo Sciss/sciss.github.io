@@ -42,7 +42,7 @@ titlecase: true
 # Site owner
 owner:
   name: Sciss
-  avatar: bio-photo.jpg
+  avatar: https://avatars0.githubusercontent.com/u/131300 # bio-photo.jpg
   bio: ""
   email:
   disqus-shortname:
