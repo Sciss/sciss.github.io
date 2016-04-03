@@ -1,6 +1,6 @@
 # Site wide configuration
 
-title:            Site Title
+title:            sciss.github.io
 locale:           en_US
 url:
 
@@ -41,12 +41,12 @@ titlecase: true
 
 # Site owner
 owner:
-  name: Your Name
+  name: Sciss
   avatar: bio-photo.jpg
   bio: "Describe your self."
   email:
   disqus-shortname:
-  twitter: #username
+  twitter: sciss_de #username
   facebook: #username
   google:
     plus: #username
@@ -55,7 +55,7 @@ owner:
     ad-client:
     ad-slot:
   bing-verify:
-  github: #username
+  github: Sciss #username
   stackoverflow: #123456/username   from a "http://stackoverflow.com/users/123456/username" link
   linkedin: #username
   xing: #username
