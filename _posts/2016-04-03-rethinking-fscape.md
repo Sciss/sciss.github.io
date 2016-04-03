@@ -31,6 +31,7 @@ Standard signal processing kits often have a rather simplistic view of signals, 
   - Mostly we think of push transport in signal processing, e.g. we start with an audio file and we throw chunks of data at the UGen until the file ends.
   - Yet, there may be cases where we want more of a functional "open music" kind of perspective, where the process is driven by a sink until a specific 
     condition occurs to terminate the process. Think of a `.contains` or `.takeWhile` collection view of a process
+  - Generally we would want the macro to determine running time. We could imagine generator UGens without a natural duration, e.g. a noise generator. If we think pull-based, the sink needs to determine what to do if a stream 'ends'.
 - channels
   - how to represent multi-channel streams?
   - Departing from the UGen metaphor, one might implement something like multi-channel expansion in SuperCollider
@@ -65,6 +66,8 @@ There are two layers involved with the integration into Mellite. The first is th
 Indeed, taking `Proc` as the model, as incomplete and questionable it still is, we could arrive at a view, where an FScape "module" is analogous to a `SynthGraph`. Then we have a simple builder from "FScape UGens" which are persisted agnostically as products as is the case with ScalaCollider UGens. We talk to the world through an outer type analogous to `Proc` with it's object attribute map and outputs, and we through special ugens such as `Attribute.kr`.
 
 The problem with this approach might be that we have to have much more differentiated types than `GE` for input and output. That would warrant a "full Lucre type" for each UGen. We could also go the dynamic/attribute map way. So there is `UGen <: Obj` and the parameters are again just in the attribute map. Then we need heuristics like in the Wolkenpumpe case, not really an attractive solution.
+
+Probably there should be two decoupled layers: One 'frozen' un-transactional for processing, and a second one bridging to Lucre. We should also think about the storage of meta-data with the results. In a confluent system, it is sufficient to store the time-stamp. Otherwise we would need to flatten the inputs? In order to re-render a deleted 'cached output'.
 
 ## Mellite
 
