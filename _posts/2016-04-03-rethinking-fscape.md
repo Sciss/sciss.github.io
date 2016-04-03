@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: "Rethinking FScape and Audio Rendering"
 description: ""
 # category: ""
