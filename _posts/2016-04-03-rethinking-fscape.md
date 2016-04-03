@@ -4,9 +4,9 @@ title: "Rethinking FScape and Audio Rendering"
 description: ""
 # category: ""
 tags: [scala]
+theme: twitter
 ---
 {% include JB/setup %}
-{% include themes/twitter/default.html %}
 
 ## Preamble
 
