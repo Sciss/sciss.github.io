@@ -87,3 +87,13 @@ For example, let's imagine we have a `Folder` and then we have a `Select` operat
 
 I.e. at some point we have a _circuit breaker_, something that transitions from functional to procedural or vice versa.
 
+## Parallelism
+
+So if we have a DAG in the end, and eliminate 'dead leaves' like in ScalaCollider, we would probably go for a pull approach from the remaining leaves. The pulling instance could be an audio output or a trigger / `Action` callback? As opposed to SuperCollider we do not have a `ZeroOut` instance like `Out.ar`.
+
+Then a UGen will also pull and block on any of its inputs. We could perhaps use something like [Co-Routines](http://storm-enroute.com/coroutines/) for that? Scala Async seems unmaintained, and we would avoid creating unnecessarily threads as with standard futures, `blocking()` and `Await()`. At some point we have an execution context, and perhaps with disjoint trees we run these automatically in parallel. The question remains if we use parallelism _within_ a tree? If we could configure Akka to block on queues beyond a given size (so the memory doesn't explode), we could also use that approach to throw around buffers?
+
+## Further Observations
+
+A "run" is a snapshot. All transactional values will be evaluated at the time the tree starts running. This follows from the nature of the non-realtime rendering. We don't want to mess with transactions here. It's like throwing a message at an actor, good bye, talk to you later. We can still have transactional interaction by way of coupling actions in Mellite.
+
