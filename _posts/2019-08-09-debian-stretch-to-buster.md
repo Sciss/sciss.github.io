@@ -142,7 +142,7 @@ I can't see that option there. But I can select the rule now in `dconf`. Open it
 
 ![Editing xkb-options in dconf](/images/stretch-to-debian-dconf-capsshift.png)
 
-Apply and quit. Now it should work. I had to re-enable _Keyboard \& Mouse_ > _Additional Layout Options_ > _Alt/Win key behavior_ > 
+Apply and quit. Now it should work. I had to re-enable _Keyboard & Mouse_ > _Additional Layout Options_ > _Alt/Win key behavior_ > 
 _Left Alt is swapped with Left Win_ in Tweak after this. Now both modification seem to be in place, fingers crossed
 that they'll stay there.
 
