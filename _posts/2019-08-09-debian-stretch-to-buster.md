@@ -81,7 +81,11 @@ because I originally copied keys from a previous computer). This was solved by r
 
 ## ssh, rsync, sftp fail to connect to my web space
 
-I noticed that I could no longer connect to my web space provider using sftp in Nautilus, then noticed that this was a general SSH problem, as I also couldn't
+I noticed that I could no longer connect to my web space provider using sftp in Nautilus:
+
+![Nautilus cannot connect via SFTP](/images/stretch-to-debian-sftp-problem.png)
+
+Then noticed that this was a general SSH problem, as I also couldn't
 log into the server using `ssh`. The error was
 
     ssh_dispatch_run_fatal: Connection to 81.169.145.126 port 22: incorrect signature
@@ -123,7 +127,7 @@ xkb_symbols "shift_modifier" {
 };
 ```
 
-Then this 'overlay' must be included as a rule in `/usr/share/X11/xkb/rules/evdev` (always make backup before editing system-wide files!).
+Then this 'overlay' must be included as a rule in `/usr/share/X11/xkb/rules/evdev` (always make a backup before editing system-wide files!).
 Find the line that specifies `ctrl_modifier` and a new line below:
 
     caps:shift_modifier = +mycapslock(shift_modifier)
@@ -134,7 +138,10 @@ Similarly, edit `/usr/share/X11/xkb/rules/evdev.lst` and add the new rule in a n
 
 Theoretically you should also edit `evdev.xml` which is what the GNOME Tweak application will present to you. I didn't bother, and so
 I can't see that option there. But I can select the rule now in `dconf`. Open it and go to section 
-`/org/gnome/desktop/input-sources/xkb-options`. Here, untick 'Use default value', and enter custom value `['caps:shift_modifier']`.
+`/org/gnome/desktop/input-sources/xkb-options`. Here, untick 'Use default value', and enter custom value `['caps:shift_modifier']`:
+
+![Editing xkb-options in dconf](/images/stretch-to-debian-dconf-capsshift.png)
+
 Apply and quit. Now it should work. I had to re-enable _Keyboard \& Mouse_ > _Additional Layout Options_ > _Alt/Win key behavior_ > 
 _Left Alt is swapped with Left Win_ in Tweak after this. Now both modification seem to be in place, fingers crossed
 that they'll stay there.
