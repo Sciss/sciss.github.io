@@ -81,11 +81,7 @@ because I originally copied keys from a previous computer). This was solved by r
 
 ## ssh, rsync, sftp fail to connect to my web space
 
-I noticed that I could no longer connect to my web space provider using sftp in Nautilus:
-
-![Nautilus cannot connect via SFTP](/images/stretch-to-debian-sftp-problem.png)
-
-Then noticed that this was a general SSH problem, as I also couldn't
+I noticed that I could no longer connect to my web space provider using sftp in Nautilus, then noticed that this was a general SSH problem, as I also couldn't
 log into the server using `ssh`. The error was
 
     ssh_dispatch_run_fatal: Connection to 81.169.145.126 port 22: incorrect signature
@@ -94,6 +90,10 @@ It seems that the known hosts cache is somehow corrupt. I probably should wipe i
 It's important to remove both hostname and IP, otherwise you get something like
 
     Warning: the ECDSA host key for 'ssh.strato.de' differs from the key for the IP address '192.168.1.123'
+
+as well as warnings in Nautilus:
+
+![Nautilus cannot connect via SFTP](/images/stretch-to-debian-sftp-problem.png)
 
 So the clean-up steps were:
 
