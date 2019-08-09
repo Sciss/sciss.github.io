@@ -128,7 +128,7 @@ xkb_symbols "shift_modifier" {
 ```
 
 Then this 'overlay' must be included as a rule in `/usr/share/X11/xkb/rules/evdev` (always make a backup before editing system-wide files!).
-Find the line that specifies `ctrl_modifier` and a new line below:
+Find the line that specifies `ctrl_modifier` and add a new line below:
 
     caps:shift_modifier = +mycapslock(shift_modifier)
 
