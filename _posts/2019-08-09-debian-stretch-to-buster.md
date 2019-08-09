@@ -45,8 +45,8 @@ Having backed up all important data to an external harddisk (including invisible
     $ apt update
     $ sudo apt upgrade
 
-This worked without major conflicts. Some dialog popped about about 'minissdpd', I just confirmed the default options.
-The final `update-initramfs`, which recreats your bootloader stuff, used kernel `4.19.0-5-amd64`, but
+This worked without major conflicts. Some dialog popped up about 'minissdpd', I just confirmed the default options.
+The final `update-initramfs`, which recreates your bootloader stuff, used kernel `4.19.0-5-amd64`, but
 gave me some warnings like
 
     W: Possible missing firmware /lib/firmware/i915/bxt_dmc_ver1_07.bin for module i915
@@ -61,8 +61,8 @@ I searched on the net, and preemptively ran this
 
     $ sudo apt full-upgrade
 
-No surprises, no problems. Finally, I took some time to review again with `aptitude search` if there were old packages no longer need, removed them, and performed
-some autoremove and purge operations.
+No surprises, no problems. Finally, I took some time to review again with `aptitude search` if there were old packages no longer needed, removed them, and performed
+some _autoremove_ and _purge_ operations.
 
 ## Hiccups
 
@@ -70,7 +70,7 @@ So the basic process was quite smooth. Most settings seemed to have survived. I 
 
 ### git has SSH problems
 
-I could not push git repositories, because there was some SSL problem, giving me a line like
+I could not push git repositories, because there was some key problem, giving me a line like
 
     sign_and_send_pubkey: signing failed: agent refused operation
 
@@ -81,7 +81,7 @@ because I originally copied keys from a previous computer). This was solved by r
 
 ## ssh, rsync, sftp fail to connect to my web space
 
-I noticed that I can no longer connect to my web space provider using sftp in Nautilus, then noticed that this is a general SSH problem, as I also couldn't
+I noticed that I could no longer connect to my web space provider using sftp in Nautilus, then noticed that this was a general SSH problem, as I also couldn't
 log into the server using `ssh`. The error was
 
     ssh_dispatch_run_fatal: Connection to 81.169.145.126 port 22: incorrect signature
@@ -101,11 +101,11 @@ So the clean-up steps were:
 A while ago my left alt and left shift keys starting to cause trouble, eventually ceasing to work altogether. I had thus swapped left alt with left
 super ("windows key"), and changed caps lock to work as the left shift key. The former mapping was preserved, while the latter was gone.
 The reason was that I was using `xmodmap` to set the behaviour, but Debian 10 no longer uses Xorg but rather Wayland for its windowing system.
-Don't ask me what that means, but the consequence is that `xmodmap` became meaningless. To cut it short,
-[this blog post](https://www.beatworm.co.uk/blog/keyboards/gnome-wayland-xkb) proved enormously useful, essentially identifying and fixing the
-problem.
+Don't ask me what that means, but the consequence is that `xmodmap` became meaningless.
 
-What you do, is add and edit some stuff in `/usr/share/X11/xkb`, and then chose a custom rule in `dconf`:
+To cut it short,
+[this blog post](https://www.beatworm.co.uk/blog/keyboards/gnome-wayland-xkb) proved enormously useful, essentially identifying and fixing the
+problem. What you do, is add and edit some stuff in `/usr/share/X11/xkb`, and then chose a custom rule in `dconf`:
 
 First, create a new file `/usr/share/X11/xkb/symbols/mycapslock` with a contents similar to the `ctrl_modifier` rule already defined in the system:
 
@@ -123,10 +123,10 @@ xkb_symbols "shift_modifier" {
 };
 ```
 
-Then this 'overlay' must be included as a rule in `/usr/share/X11/xkb/rules/evdev`. Find the line that specifies `ctrl_modifier` and a new line
-below:
+Then this 'overlay' must be included as a rule in `/usr/share/X11/xkb/rules/evdev` (always make backup before editing system-wide files!).
+Find the line that specifies `ctrl_modifier` and a new line below:
 
-    caps:shift_modifier = +hhcapslock(shift_modifier)
+    caps:shift_modifier = +mycapslock(shift_modifier)
 
 Similarly, edit `/usr/share/X11/xkb/rules/evdev.lst` and add the new rule in a new line under the `ctrl_modifier` rule:
 
