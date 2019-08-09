@@ -83,7 +83,9 @@ because I originally copied keys from a previous computer). This was solved by r
 
 I noticed that I could no longer connect to my web space provider using sftp in Nautilus:
 
+
 ![Nautilus cannot connect via SFTP](/images/stretch-to-debian-sftp-problem.png)
+
 
 Then noticed that this was a general SSH problem, as I also couldn't
 log into the server using `ssh`. The error was
