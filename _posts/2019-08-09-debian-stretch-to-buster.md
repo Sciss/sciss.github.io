@@ -10,8 +10,8 @@ tags: [linux]
 I am less adventurous than some of my colleagues who are running Debian unstable as their main operating system. I started using Debian when version 8 (Jessie) was in freeze,
 so I almost started with a stable Jessie. When version 9 (Stretch) came out, I just updated my apt sources, and the whole process worked quite nicely. Since a few weeks,
 version 10 (Buster) was marked stable, and some of the recent GPG key server attacks prompted me to perform this update, since gpg 2.1.18 was giving me trouble, and the
-newer version 2.2.12 promised relief. In this post, I want to summarise the hickups I had to solve, which are probably particular to me coming from a system that originally
-originally Jessie before its release.
+newer version 2.2.12 promised relief. In this post, I want to summarise the hiccups I had to solve, which are probably particular to me coming from a system that was
+originally originally Jessie before its release.
 
 You can basically follow [this official instructions](https://www.debian.org/releases/buster/mips/release-notes/ch-upgrading.en.html) for upgrading. Looking through the
 [Issues to be aware of chapter](https://www.debian.org/releases/buster/mips/release-notes/ch-information.en.html), I took note of section 5.1.5 legacy network names.
@@ -20,10 +20,9 @@ You can basically follow [this official instructions](https://www.debian.org/rel
 ## Running the apt upgrades
 
 Next I uninstalled stuff I had from other sources, as a precaution. `aptitude search '~i(!~ODebian)'` gives you hints what those packages are (anything not marked 'A' was
-installed manually and not automatically).I then ran
+installed manually and not automatically). I then ran
 
     $ apt update
-    $ sudo apt upgrade
 
 I still had some issues, like:
 
@@ -33,7 +32,7 @@ I still had some issues, like:
     E: Broken packages
 
 Those were part of the non-automatically installed packages, so step by step I could remove offending packages.
-When unsure you can check a suspicious package with `apt show package-name`. 
+When unsure, you can check a suspicious package with `apt show package-name`. 
 
 Finally, I removed stuff like Skype, node.js and VS Code, along with their custom apt sources files, leaving me just with one
 sources file needing update:
@@ -41,7 +40,10 @@ sources file needing update:
     $ sudo sed -i 's/stretch/buster/g' /etc/apt/sources.list
 
 (I stole that line [from this tutorial](https://linuxconfig.org/how-to-upgrade-debian-9-stretch-to-debian-10-buster)).
-Having backed up all important data to an external harddisk (including invisible dot-files from your home directory), I then ran
+Having backed up all important data to an external harddisk (including invisible dot-files from the home directory), I then ran
+
+    $ apt update
+    $ sudo apt upgrade
 
 This worked without major conflicts. Some dialog popped about about 'minissdpd', I just confirmed the default options.
 The final `update-initramfs`, which recreats your bootloader stuff, used kernel `4.19.0-5-amd64`, but
@@ -53,11 +55,11 @@ gave me some warnings like
 
 I searched on the net, and preemptively ran this
 
-    sudo apt install firmware-linux
+    $ sudo apt install firmware-linux
 
 (FYI, I have included `non-free` in my sources, this might be relevant). The warnings disappeared, hurrah! I rebooted, and finally:
 
-    sudo apt full-upgrade
+    $ sudo apt full-upgrade
 
 No surprises, no problems. Finally, I took some time to review again with `aptitude search` if there were old packages no longer need, removed them, and performed
 some autoremove and purge operations.
@@ -75,7 +77,7 @@ I could not push git repositories, because there was some SSL problem, giving me
 It turned out to be related to permissions (I think they were too permissive, perhaps
 because I originally copied keys from a previous computer). This was solved by running
 
-    chmod 600 .ssh/id_rsa
+    $ chmod 600 .ssh/id_rsa
 
 ## ssh, rsync, sftp fail to connect to my web space
 
@@ -91,8 +93,8 @@ It's important to remove both hostname and IP, otherwise you get something like
 
 So the clean-up steps were:
 
-    ssh-keygen -R ssh.strato.de
-    ssh-keygen -R 81.169.145.126
+    $ ssh-keygen -R ssh.strato.de
+    $ ssh-keygen -R 81.169.145.126
 
 ### Custom key mappings are gone
 
