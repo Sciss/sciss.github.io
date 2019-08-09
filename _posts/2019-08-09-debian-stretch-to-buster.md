@@ -13,7 +13,7 @@ version 10 (Buster) was marked stable, and some of the recent GPG key server att
 newer version 2.2.12 promised relief. In this post, I want to summarise the hiccups I had to solve, which are probably particular to me coming from a system that was
 originally originally Jessie before its release.
 
-You can basically follow [this official instructions](https://www.debian.org/releases/buster/mips/release-notes/ch-upgrading.en.html) for upgrading. Looking through the
+You can basically follow [the official instructions](https://www.debian.org/releases/buster/mips/release-notes/ch-upgrading.en.html) for upgrading. Looking through the
 [Issues to be aware of chapter](https://www.debian.org/releases/buster/mips/release-notes/ch-information.en.html), I took note of section 5.1.5 legacy network names.
 `70-persistent-net.rule` was the only file mentioning `eth0`, so it boiled down to commenting out the line in that file and rebooting.
 
