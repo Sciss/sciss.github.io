@@ -104,8 +104,8 @@ So the clean-up steps were:
 
 A while ago my left alt and left shift keys starting to cause trouble, eventually ceasing to work altogether. I had thus swapped left alt with left
 super ("windows key"), and changed caps lock to work as the left shift key. The former mapping was preserved, while the latter was gone.
-The reason was that I was using `xmodmap` to set the behaviour, but GNOME no longer uses Xorg but rather Wayland for its windowing system.
-Don't ask me what that means, but the consequence is that `xmodmap` became meaningless.
+The reason was that I was using `xmodmap` to set the behaviour, but Debian 10 [no longer uses](https://wiki.debian.org/NewInBuster) X.org but rather
+Wayland as default protocol for the GNOME desktop environment. The consequence is that `xmodmap` became meaningless.
 
 To cut it short,
 [this blog post](https://www.beatworm.co.uk/blog/keyboards/gnome-wayland-xkb) proved enormously useful, essentially identifying and fixing the
