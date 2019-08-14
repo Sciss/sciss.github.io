@@ -150,7 +150,7 @@ key as left alt, and `compose:ralt` enables the right alt key to type umlauts an
 ### Maps first doesn't work, then works too good
 
 Having a built-in map application based on OpenStreetMap is great. Unfortunately there is a hiccup with it connecting no longer, it
-just says it's 'offline'. The origin of the problem is that my wifi by default reports that I has 'limited' connectivity:
+just says it's 'offline'. The origin of the problem is that my WiFi by default reports that it has 'limited' connectivity:
 
     $ nmcli g
     STATE      CONNECTIVITY  WIFI-HW  WIFI     WWAN-HW  WWAN     
