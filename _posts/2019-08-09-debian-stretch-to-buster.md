@@ -105,7 +105,7 @@ So the clean-up steps were:
 A while ago my left alt and left shift keys starting to cause trouble, eventually ceasing to work altogether. I had thus swapped left alt with left
 super ("windows key"), and changed caps lock to work as the left shift key. The former mapping was preserved, while the latter was gone.
 The reason was that I was using `xmodmap` to set the behaviour, but Debian 10 [no longer uses](https://wiki.debian.org/NewInBuster) X.org but rather
-Wayland as default protocol for the GNOME desktop environment. The consequence is that `xmodmap` became meaningless.
+Wayland as default protocol for the Gnome desktop environment. The consequence is that `xmodmap` became meaningless.
 
 To cut it short,
 [this blog post](https://www.beatworm.co.uk/blog/keyboards/gnome-wayland-xkb) proved enormously useful, essentially identifying and fixing the
@@ -136,16 +136,44 @@ Similarly, edit `/usr/share/X11/xkb/rules/evdev.lst` and add the new rule in a n
 
     caps:shift_modifier Caps Lock is also a Shift
 
-Theoretically you should also edit `evdev.xml` which is what the GNOME Tweak application will present to you. I didn't bother, and so
+Theoretically you should also edit `evdev.xml` which is what the Gnome Tweak application will present to you. I didn't bother, and so
 I can't see that option there. But I can select the rule now in `dconf`. Open it and go to section 
 `/org/gnome/desktop/input-sources/xkb-options`. Here, untick 'Use default value', and enter custom value `['caps:shift_modifier']`:
 
 ![Editing xkb-options in dconf](/images/stretch-to-debian-dconf-capsshift.png)
 
 Apply and quit. Now it should work. In the screenshot you can see that I added two other options, `'altwin:swap_lalt_lwin'` and
-`'compose:ralt`. These you could probably find the GNOME Tweaks application (e.g.  _Keyboard & Mouse_ > _Additional Layout Options_ >
+`'compose:ralt`. These you could probably find the Gnome Tweaks application (e.g.  _Keyboard & Mouse_ > _Additional Layout Options_ >
 _Alt/Win key behavior_ > _Left Alt_) but this ways they are all in one place. `swap_lalt_lwin` makes it so that I can use the Windows
 key as left alt, and `compose:ralt` enables the right alt key to type umlauts and other special characters.
+
+### Maps first doesn't work, then works too good
+
+Having a built-in map application based on OpenStreetMap is great. Unfortunately there is a hiccup with it connecting no longer, it
+just says it's 'offline'. The origin of the problem is that my wifi by default reports that I has 'limited' connectivity:
+
+    $ nmcli g
+    STATE      CONNECTIVITY  WIFI-HW  WIFI     WWAN-HW  WWAN     
+    connected  limited       enabled  enabled  enabled  disabled 
+
+Note the second column. This seems a bug in the Wifi driver 'wpa supplicant' and/or Gnome's network manager. I found an easy fix --
+just 'check' for the connectivity:
+
+    $ nmcli networking connectivity check
+    full
+
+Apparently that command fixes the hiccup by bringing connectivity to 'full'. Now Maps has Internet connection.
+
+Did you notice that the application finds your actual geo location up to few metres precision? I find that very scary. I thought I
+had disabled geo location services in _Settings_ > _Privacy_ > _Location Services_. It [turns out](https://gitlab.freedesktop.org/geoclue/geoclue/issues/111)
+that applications are actually free to respect or disrespect that setting. My next thought was to uninstall the geolocation
+service. [Turns out](https://unix.stackexchange.com/questions/224487/uninstall-geoclue-from-debian) that is not possible without
+removing Gnome. The linked Stackexchange question has an answer for that:
+
+    $ sudo systemctl disable geoclue.service
+    $ sudo systemctl mask geoclue.service
+
+This effectively knocks out the geoclue service (you have to reboot!).
 
 -----
 
